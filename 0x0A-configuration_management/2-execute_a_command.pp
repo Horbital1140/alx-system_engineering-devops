@@ -1,7 +1,7 @@
 # process kill me now
 
 exec { 'pkill':
-command => 'pkill killmenow',
+command  => 'pkill killmenow',
 provider => 'shell',
 }
 
