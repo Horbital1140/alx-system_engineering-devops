@@ -6,6 +6,7 @@ file { '/etc/ssh/ssh_config':
 ensure 	=> present,
 content => "Host *
                   identityFile ~/.ssh/school
-	 	   PasswordAuthentication no
+	 	   PasswordAuthentication no"
+replace => true
 }
 }
