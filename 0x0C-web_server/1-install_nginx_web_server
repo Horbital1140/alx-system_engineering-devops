@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# update the nginx
+
+sudo apt update -y
+sudo apt upgrade -y
+
+# nginx installation
+sudo apt install nginx -y
+sudo service nginx start
+
+# modify root html
+
+sudo chown -R "$USER":"USER" /var/ww/html
+echo "Hello World!" > /var/ww/html/index.nginx-debian.html
