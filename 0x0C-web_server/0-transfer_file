@@ -5,16 +5,15 @@
 #The path to the SSH private key that scp uses
 
 
-if [ '#$' -lt 4];
+if [ $# -lt 4 ]
 then
-echo 'Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY'
+  echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
 
 else
+	FILE_PATH="$1"
+	SERVER_IP="$2"
+	USERNAME="$3"
+	SSH_KEY_PATH="$4"
 
-SERVER_IP='$2'
-FILE_IP='$1'
-SSH_KEY_PATH='$4'
-USERNAME='$3'
-
-scp -o StrictHostKeyChecking=no -i 'FILE_IP' 'SERVER_IP' 'USERNAME' 'SSH_KEY_PATH':~
+	scp -o StrictHostKeyChecking=no -i "$SSH_KEY_PATH" "$FILE_PATH" "$USERNAME@$SERVER_IP":~
 fi
