@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-Configure Nginx server so that /redirect_me is redirecting to another page.
+# Configure Nginx server so that /redirect_me is redirecting to another page.
 
 # installing nginx and update the parkage
 sudo apt update -y
