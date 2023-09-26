@@ -2,7 +2,6 @@
 # update the nginx
 
 sudo apt update -y
-sudo apt upgrade -y
 
 # nginx installation
 sudo apt install nginx -y
