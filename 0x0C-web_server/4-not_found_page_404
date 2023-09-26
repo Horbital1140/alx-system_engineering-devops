@@ -1,28 +1,40 @@
 #!/usr/bin/env bash
-# Configure Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
+# Configure Nginx server so that redirect_me is redirecting to another page.
 
-
-sudo apt updtate -y
+# installing nginx and update the parkage
+sudo apt update -y
 sudo apt install nginx -y
-echo "Ceci n'est pas une page" > custom_404.html
-sudo nano /var/www/html/custom_404.html
+sudo service nginx start
+sudo chown -R "$USER":"$USER" /var/www/html
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-enabled
+sudo bash -c 'cat <<EOF> /etc/nginx/sites-enabled/default
+        server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
 
-echo "server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+        server_name _;
 
-	root /var/www/html;
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-}
+        location / {
+                try_files \$uri \$uri/ = 404;
+        }
 
+        location /redirect_me {
+                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+        }
 	error_page 404 /404.html;
-	location = /404.html{
-	internal;
+        	location = /404.html{
+        	root /var/www/html
+		internal;
 }
-}" > default
-sudo nano /etc/nginx/sites-available/default
-sudo service nginx restart
+
+}
+EOF'
+sudo service nginx reload
+
 
 
 
