@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# distributing client on server
+
+sudo apt-get update -y
+sudo apt-get install haproxy -y
+
+sudo service haproxy start
+echo '
+frontend zimrax
+	bind *:80
+	default_backend zimrax-backend
+
+backend zimrax-backend
+	balance roundrobin
+	server web1 100.25.188.129:80 check
+	server web2 204.236.240.90:80 check' | sudo tee -a /etc/haproxy/haproxy.cfg
+
+sudo service haproxy reload
