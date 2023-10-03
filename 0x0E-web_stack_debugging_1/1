@@ -1,0 +1,4 @@
+status: unrecognized service
+start: unrecognized service
+./0-nginx_likes_port_80: line 10: netstat: command not found
+restart: unrecognized service
