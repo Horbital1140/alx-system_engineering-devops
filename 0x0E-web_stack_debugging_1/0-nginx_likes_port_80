@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configurin nginx to listen on port 80
+
+if ! service status nginx | grep -q "Active: active (running)"; then
+ 
+  service start nginx
+fi
+
+
+if ! netstat -nltp | grep -q "0.0.0.0:80"; then
+  
+  sed -i "s/listen 80 default_server;/listen 0.0.0.0:80 default_server;/g" /etc/nginx/nginx.conf
+  service restart nginx
+fi
