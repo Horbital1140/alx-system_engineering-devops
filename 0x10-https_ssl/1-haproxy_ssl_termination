@@ -1,4 +1,4 @@
-s is a template i found online but i didnt add my config
+# This is a template i found online but i didnt add my config
 global
 	log /dev/log	local0
 	log /dev/log	local1 notice
