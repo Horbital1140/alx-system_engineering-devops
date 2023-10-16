@@ -32,4 +32,3 @@ COMMIT
 :PREROUTING ACCEPT [0:0]
 -A PREROUTING -i eth0 -p tcp --dport 8080 -j REDIRECT --to-port 80
 COMMIT
-"/etc/ufw/before.rules" 82L, 2678C                           82,6          Bot
